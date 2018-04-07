@@ -213,11 +213,11 @@ def m_step(counts, patient_classes):
     # compute error rates 
     error_rates = np.zeros([nObservers, nClasses, nClasses])
     for l in range(nClasses):
-						error_rates[:, :, l] = np.dot(counts[:, :, l].T, patient_classes)
+		error_rates[:, :, l] = np.dot(counts[:, :, l].T, patient_classes)
             
-				# normalize by summing over all observation classes
+	# normalize by summing over all observation classes
     sum_over_responses = np.sum(error_rates, axis=2)
-				error_rates = np.divide(error_rates, sum_over_responses.reshape(nObservers, nClasses, 1))
+	error_rates = np.divide(error_rates, sum_over_responses.reshape(nObservers, nClasses, 1))
 
     return (class_marginals, error_rates)
 
