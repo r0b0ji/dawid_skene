@@ -160,9 +160,7 @@ def responses_to_counts(responses):
             k = observers.index(observer)
             for response in responses[patient][observer]:
                 j = classes.index(response)
-                counts[i,k,j] += 1
-        
-    
+                counts[i,k,j] += 1   
     return (patients, observers, classes, counts)
 
 
@@ -213,9 +211,9 @@ def m_step(counts, patient_classes):
     # compute error rates 
     error_rates = np.zeros([nObservers, nClasses, nClasses])
     for l in range(nClasses):
-		error_rates[:, :, l] = np.dot(counts[:, :, l].T, patient_classes)
+        error_rates[:, :, l] = np.dot(counts[:, :, l].T, patient_classes)
             
-	# normalize by summing over all observation classes
+    # normalize by summing over all observation classes
     sum_over_responses = np.sum(error_rates, axis=2)
 	error_rates = np.divide(error_rates, sum_over_responses.reshape(nObservers, nClasses, 1))
 
